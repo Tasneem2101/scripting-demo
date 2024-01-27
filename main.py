@@ -8,11 +8,15 @@ def script(path,n):
             full_path = abspath(join(top_dir, _file))
             size = getsize(full_path)
             sizes[full_path] = size
-            #break
+
 
 
     for path in  dict(list(sizes.items())[0: n+1]):
         if sizes[path] >50:
             print("Path: {0}, size: {1}".format(path, sizes[path]))
+    sorted_results = sorted(sizes, key=sizes.get, reverse=True)
+    for path in sorted_results[:10]:
+        print("the 10 largest files :Path: {0}, size: {1}".format(path, sizes[path]))
 if __name__ =="__main__":
-    script('.',3)
+    n=int(input('Enter the number of files you wanna see= '))
+    script('.',n)
